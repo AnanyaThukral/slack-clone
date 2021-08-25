@@ -5,15 +5,36 @@ import Login from './components/Login'
 import styled from 'styled-components'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar';
+import db from './Firebase'
+import {useEffect, useState} from 'react'
 
 function App() {
+
+  const [rooms, setRooms] = useState([])
+
+  const getChannels = () =>{
+    db.collection('rooms').onSnapshot(snapshot=>{
+      setRooms(snapshot.docs.map(doc=>(
+         {
+           id:doc.id,
+           name:doc.data().name
+         }
+      )))
+    })
+  }
+
+  //on mount
+  useEffect(()=>{
+    getChannels()
+  }, [])
+
   return (
     <div className="App">
      <Router>
         <Container>
           <Header/>
           <Main>
-            <Sidebar/>
+            <Sidebar rooms = {rooms}/>
             <Switch>
               <Route path = "/room">
                 <Chat/>
@@ -39,7 +60,6 @@ const Container = styled.div`
 `
 
 const Main = styled.div`
-  background-color: blue;
   display: grid;
   grid-template-columns: 260px auto;
 `
