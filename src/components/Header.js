@@ -18,7 +18,7 @@ const Header = () => {
                 <Name>
                     Ananya
                 </Name>
-                <Avatar style= {{height:'30px', width:'30px'}} src="/static/images/avatar/1.jpg">
+                <Avatar style= {{height:'25px', width:'25px'}} src="/static/images/avatar/1.jpg">
                     A
                 </Avatar>
             </UserContainer>
@@ -32,22 +32,29 @@ const Container = styled.div`
     display: flex;
     background:#350d36;
     color:white;
-    justify-content: space-between;
+    justify-content: center;
     align-items:center;
+    position:relative;
 `
 
 const Main = styled.div`
     display: flex;
+    margin-left: 16px;
+    margin-right: 16px;
 `
 
 const UserContainer = styled.div`
     display: flex;
     align-items:center;
     padding-right:16px;
+    position:absolute;
+    right:0;
+
 `
 
 const SearchContainer = styled.div`
     min-width:400px;
+    margin: 0 16px;
 `
 
 const Search = styled.div`
