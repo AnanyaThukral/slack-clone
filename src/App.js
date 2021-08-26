@@ -5,7 +5,7 @@ import Login from './components/Login'
 import styled from 'styled-components'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar';
-import db from './Firebase'
+import db, {auth} from './Firebase'
 import {useEffect, useState} from 'react'
 
 function App() {
@@ -24,6 +24,15 @@ function App() {
     })
   }
 
+  //signout
+  const signOut = ()=>{
+    auth.signOut()
+    .then(()=>{
+      localStorage.removeItem('user')
+      setUser(null)
+    })
+  }
+
   //on mount
   useEffect(()=>{
     getChannels()
@@ -37,7 +46,7 @@ function App() {
          <Login setUser={setUser}/>
          ) : (
         <Container>
-          <Header username = {user.name} photo = {user.photo}/>
+          <Header username = {user.name} photo = {user.photo} signOut = {signOut}/>
           <Main>
             <Sidebar rooms = {rooms}/>
             <Switch>
