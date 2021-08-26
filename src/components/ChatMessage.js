@@ -1,19 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ChatMessage = () => {
+const ChatMessage = ({user, photo, timestamp, text}) => {
     return (
         <Container>
             <UserAvatar>
-                <img src = "https://marvel-b1-cdn.bc0a.com/f00000000209359/www.recruitguelph.ca/cecs/sites/default/files/Ananya%20Thukral_Headshot%20%281%29%20%281%29_1.jpg"/>
+                <img src = {photo}/>
             </UserAvatar>
             <MessageContent>
                 <Name>
-                    Ananya Thukral
-                    <span>25/08/2021 03:22:55 AM</span>
+                    {user}
+                    <span>{new Date(timestamp.toDate()).toUTCString}</span>
                 </Name>
                 <Text>
-                    This is great! Lets goooo!
+                    {text}
                 </Text>
             </MessageContent>
         </Container>
