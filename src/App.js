@@ -11,6 +11,7 @@ import {useEffect, useState} from 'react'
 function App() {
 
   const [rooms, setRooms] = useState([])
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user'))) //converting the string to object
 
   const getChannels = () =>{
     db.collection('rooms').onSnapshot(snapshot=>{
@@ -31,8 +32,12 @@ function App() {
   return (
     <div className="App">
      <Router>
+       {
+         !user? (
+         <Login setUser={setUser}/>
+         ) : (
         <Container>
-          <Header/>
+          <Header username = {user.name} photo = {user.photo}/>
           <Main>
             <Sidebar rooms = {rooms}/>
             <Switch>
@@ -45,6 +50,7 @@ function App() {
             </Switch>
           </Main>
         </Container>
+         )}
      </Router>
     </div>
   );
