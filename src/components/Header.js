@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { Avatar } from '@material-ui/core';
 
-const Header = () => {
+const Header = ({username, photo, signOut}) => {
     return (
         <Container>
             <Main>
@@ -16,11 +16,9 @@ const Header = () => {
             </Main>
             <UserContainer>
                 <Name>
-                    Ananya
+                    {username}
                 </Name>
-                <Avatar style= {{height:'25px', width:'25px'}} src="/static/images/avatar/1.jpg">
-                    A
-                </Avatar>
+                <Avatar onClick = {signOut} style= {{height:'25px', width:'25px'}} src={photo ? photo : "https://i.imgur.com/6VBx3io.png"}> </Avatar>
             </UserContainer>
         </Container>
     )
@@ -35,6 +33,7 @@ const Container = styled.div`
     justify-content: center;
     align-items:center;
     position:relative;
+    box-shadow:0 1px 00 rgb(255 255 255/10%)
 `
 
 const Main = styled.div`

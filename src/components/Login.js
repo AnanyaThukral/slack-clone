@@ -11,6 +11,7 @@ const Login = ({setUser}) => {
                 name:result.user.displayName,
                 photo:result.user.photoURL
             }
+            //saving user in local storage and converting to string for browser to read
             localStorage.setItem('user', JSON.stringify(newUser))
             setUser(newUser)
         })
